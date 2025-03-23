@@ -1,0 +1,26 @@
+digraph MicrowaveFSM {
+    rankdir="LR";
+    node [shape=circle, width=1.2];
+    
+    // Состояния
+    x0 [label="off"];
+    x1 [label="waiting"];
+    x2 [label="heating"];
+    x3 [label="paused"];
+    
+    // Переходы
+    x0 -> x1 [label="u0"];
+    x1 -> x0 [label="u1"];
+    x1 -> x2 [label="u2"];
+    x2 -> x3 [label="u3"];
+    x3 -> x1 [label="u4"];
+    x2 -> x1 [label="u5"];
+    
+    // Глобальные переходы
+    x2 -> x0 [label="u1"];
+    x3 -> x0 [label="u1"];
+    
+    // Переходы при выключенном состоянии
+    x0 -> x0 [label="u3"];
+    x0 -> x0 [label="u4"];
+}
